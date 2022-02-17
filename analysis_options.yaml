@@ -1,0 +1,18 @@
+include: package:lint/analysis_options.yaml
+
+analyser:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  exclude:
+    - "**/*.g.dart"
+    - "**.g.dart"
+    - "**.mocks.dart"
+  errors:
+    todo: ignore
+    
+linter:
+  rules:
+    always_specify_types: false
+    sort_constructors_first: true
+    sort_pub_dependencies: false
