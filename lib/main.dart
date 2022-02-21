@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_delivery_app_clean_arch/src/config/routes/app_routes.dart';
 import 'package:flutter_delivery_app_clean_arch/src/config/themes/app_theme.dart';
+import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/utils/constants.dart';
 import 'package:flutter_delivery_app_clean_arch/src/injector.dart';
+import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +18,19 @@ class DeliveryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: kAppTitle,
-      onGenerateRoute: onGenerateRoutes,
-      theme: themeDataLight,
+    return BlocProvider<RemoteFirebaseBloc>(
+      create: (_) => injector()
+        ..add(
+          Login(
+            UserRequestParams("usuario@email.com", "password2"),
+          ),
+        ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: kAppTitle,
+        onGenerateRoute: onGenerateRoutes,
+        theme: themeDataLight,
+      ),
     );
   }
 }

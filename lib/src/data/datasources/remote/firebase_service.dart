@@ -5,13 +5,17 @@ class FirebaseService {
     required String email,
     required String password,
   }) async {
-    return const AppUserModel(
-      userId: "1",
-      fullName: "Nome Completo Usuário",
-      email: "usuario@email.com",
-      password: "password",
-      imageUrl: "",
-      role: "admin",
-    );
+    if (email == "usuario@email.com" && password == "password") {
+      return const AppUserModel(
+        userId: "1",
+        fullName: "Nome Completo Usuário",
+        email: "usuario@email.com",
+        password: "password",
+        imageUrl: "",
+        role: "admin",
+      );
+    } else {
+      return AppUserModel.empty();
+    }
   }
 }
