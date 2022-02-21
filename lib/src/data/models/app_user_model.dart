@@ -19,6 +19,17 @@ class AppUserModel extends AppUser {
           role: role,
         );
 
+  factory AppUserModel.empty() {
+    return const AppUserModel(
+      userId: '',
+      fullName: '',
+      email: '',
+      password: '',
+      imageUrl: '',
+      role: '',
+    );
+  }
+
   factory AppUserModel.fromMap(Map<String, dynamic> map) {
     return AppUserModel(
       userId: map['userId']?.toString() ?? '',
