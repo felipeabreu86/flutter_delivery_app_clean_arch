@@ -1,6 +1,6 @@
 import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
 
-abstract class FirebaseService {
+class FirebaseService {
   Future<AppUserModel> login({
     required String email,
     required String password,
