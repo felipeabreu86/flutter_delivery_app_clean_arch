@@ -30,7 +30,14 @@ class AppUser extends Equatable {
 
   @override
   List<Object> get props {
-    return [userId, fullName, email, password, imageUrl, role];
+    return [
+      userId,
+      fullName,
+      email,
+      password,
+      imageUrl,
+      role,
+    ];
   }
 
   @override
