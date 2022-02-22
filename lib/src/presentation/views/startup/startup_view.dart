@@ -4,21 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class StartupScreen extends StatefulWidget {
+  const StartupScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _StartupScreenState createState() => _StartupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _StartupScreenState extends State<StartupScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Center(
-        child: _buildBody(),
-      ),
+      child: Center(child: _buildBody()),
     );
   }
 
