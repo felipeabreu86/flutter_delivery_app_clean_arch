@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
 
@@ -23,9 +24,9 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
         return DataFailed(response);
       }
     } on DioError catch (e) {
-      return DataFailed(AppUser.empty(), error: e);
+      return DataFailed(AppUserModel.empty(), error: e);
     } catch (error) {
-      return DataFailed(AppUser.empty());
+      return DataFailed(AppUserModel.empty());
     }
   }
 }

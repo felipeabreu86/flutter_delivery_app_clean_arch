@@ -1,12 +1,12 @@
 part of 'remote_firebase_bloc.dart';
 
 abstract class RemoteFirebaseState extends Equatable {
-  const RemoteFirebaseState({this.email});
+  const RemoteFirebaseState({this.user});
 
-  final String? email;
+  final AppUser? user;
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [user];
 }
 
 class RemoteFirebaseInitial extends RemoteFirebaseState {
@@ -14,7 +14,7 @@ class RemoteFirebaseInitial extends RemoteFirebaseState {
 }
 
 class RemoteFirebaseDone extends RemoteFirebaseState {
-  const RemoteFirebaseDone(String email) : super(email: email);
+  const RemoteFirebaseDone(AppUser user) : super(user: user);
 }
 
 class RemoteFirebaseError extends RemoteFirebaseState {

@@ -6,7 +6,7 @@ abstract class RemoteFirebaseEvent extends Equatable {
   final UserRequestParams params;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [params];
 }
 
 class Login extends RemoteFirebaseEvent {

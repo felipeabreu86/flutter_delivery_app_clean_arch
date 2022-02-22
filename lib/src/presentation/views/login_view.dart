@@ -30,8 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
         } else if (state is RemoteFirebaseError) {
           return const Center(child: Icon(Ionicons.refresh));
         } else if (state is RemoteFirebaseDone) {
-          final String email = state.email ?? '';
-          return Text(email);
+          return Text(state.user?.fullName ?? '');
         } else {
           return const SizedBox();
         }

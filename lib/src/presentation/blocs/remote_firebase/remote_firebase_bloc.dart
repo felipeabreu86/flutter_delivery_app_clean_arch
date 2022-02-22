@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/bloc/bloc_with_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_usecase.dart';
 
 part 'remote_firebase_event.dart';
@@ -31,7 +32,7 @@ class RemoteFirebaseBloc
     );
 
     if (dataState is DataSuccess && dataState.data.email.isNotEmpty) {
-      emit(RemoteFirebaseDone(dataState.data.email));
+      emit(RemoteFirebaseDone(dataState.data));
     } else if (dataState is DataFailed) {
       emit(const RemoteFirebaseError());
     }

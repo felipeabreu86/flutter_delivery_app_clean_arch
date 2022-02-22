@@ -20,11 +20,7 @@ class DeliveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<RemoteFirebaseBloc>(
       create: (_) => injector()
-        ..add(
-          Login(
-            UserRequestParams("usuario@email.com", "password2"),
-          ),
-        ),
+        ..add(Login(UserRequestParams("usuario@email.com", "password"))),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
