@@ -18,7 +18,8 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
         email: params.email,
         password: params.password,
       );
-      if (response.fullName.isNotEmpty) {
+
+      if (response.userId.isNotEmpty) {
         return DataSuccess(response);
       } else {
         return DataFailed(response);

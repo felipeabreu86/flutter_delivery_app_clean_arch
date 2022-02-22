@@ -31,7 +31,7 @@ class RemoteFirebaseBloc
       params: event.params,
     );
 
-    if (dataState is DataSuccess && dataState.data.email.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data.isValid) {
       emit(RemoteFirebaseDone(dataState.data));
     } else if (dataState is DataFailed) {
       emit(const RemoteFirebaseError());

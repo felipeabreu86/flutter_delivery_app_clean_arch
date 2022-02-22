@@ -10,7 +10,6 @@ class FirebaseService {
         userId: "1",
         fullName: "Nome Completo Usuário",
         email: "usuario@email.com",
-        password: "password",
         imageUrl: "",
         role: "admin",
       );

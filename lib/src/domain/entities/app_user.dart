@@ -5,7 +5,6 @@ class AppUser extends Equatable {
     required this.userId,
     required this.fullName,
     required this.email,
-    required this.password,
     required this.imageUrl,
     required this.role,
   });
@@ -13,9 +12,10 @@ class AppUser extends Equatable {
   final String userId;
   final String fullName;
   final String email;
-  final String password;
   final String imageUrl;
   final String role;
+
+  bool get isValid => userId.isNotEmpty && email.isNotEmpty;
 
   @override
   List<Object> get props {
@@ -23,7 +23,6 @@ class AppUser extends Equatable {
       userId,
       fullName,
       email,
-      password,
       imageUrl,
       role,
     ];

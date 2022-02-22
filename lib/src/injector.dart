@@ -8,18 +8,22 @@ import 'package:get_it/get_it.dart';
 final injector = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // Datasources
   injector.registerSingleton<FirebaseService>(
     FirebaseService(),
   );
 
+  // Repositories
   injector.registerSingleton<FirebaseRepository>(
     FirebaseRepositoryImpl(injector()),
   );
 
+  // Usecases
   injector.registerSingleton<LoginUseCase>(
     LoginUseCase(injector()),
   );
 
+  // Blocs
   injector.registerSingleton<RemoteFirebaseBloc>(
     RemoteFirebaseBloc(injector()),
   );

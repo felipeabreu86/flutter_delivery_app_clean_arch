@@ -7,14 +7,12 @@ class AppUserModel extends AppUser {
     required String userId,
     required String fullName,
     required String email,
-    required String password,
     required String imageUrl,
     required String role,
   }) : super(
           userId: userId,
           fullName: fullName,
           email: email,
-          password: password,
           imageUrl: imageUrl,
           role: role,
         );
@@ -24,7 +22,6 @@ class AppUserModel extends AppUser {
       userId: '',
       fullName: '',
       email: '',
-      password: '',
       imageUrl: '',
       role: '',
     );
@@ -35,7 +32,6 @@ class AppUserModel extends AppUser {
       userId: map['userId']?.toString() ?? '',
       fullName: map['fullName']?.toString() ?? '',
       email: map['email']?.toString() ?? '',
-      password: map['password']?.toString() ?? '',
       imageUrl: map['imageUrl']?.toString() ?? '',
       role: map['role']?.toString() ?? '',
     );
@@ -48,7 +44,6 @@ class AppUserModel extends AppUser {
     String? userId,
     String? fullName,
     String? email,
-    String? password,
     String? imageUrl,
     String? role,
   }) {
@@ -56,7 +51,6 @@ class AppUserModel extends AppUser {
       userId: userId ?? this.userId,
       fullName: fullName ?? this.fullName,
       email: email ?? this.email,
-      password: password ?? this.password,
       imageUrl: imageUrl ?? this.imageUrl,
       role: role ?? this.role,
     );
@@ -67,7 +61,6 @@ class AppUserModel extends AppUser {
       'userId': userId,
       'fullName': fullName,
       'email': email,
-      'password': password,
       'imageUrl': imageUrl,
       'role': role,
     };
@@ -77,6 +70,6 @@ class AppUserModel extends AppUser {
 
   @override
   String toString() {
-    return 'AppUserModel(userId: $userId, fullName: $fullName, email: $email, password: $password, imageUrl: $imageUrl, role: $role)';
+    return 'AppUserModel(userId: $userId, fullName: $fullName, email: $email, imageUrl: $imageUrl, role: $role)';
   }
 }
