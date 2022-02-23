@@ -38,8 +38,8 @@ class RemoteFirebaseBloc
         params: event.params!,
       );
 
-      if (dataState is DataSuccess && dataState.data.isValid) {
-        emit(RemoteFirebaseLoggedIn(dataState.data));
+      if (dataState is DataSuccess && dataState.data!.isValid) {
+        emit(RemoteFirebaseLoggedIn(dataState.data!));
       } else if (dataState is DataFailed) {
         emit(RemoteFirebaseError(errorMessage: dataState.formatedErrorMessage));
       }
@@ -53,7 +53,7 @@ class RemoteFirebaseBloc
     final dataState = await _checkAuthenticationUseCase();
 
     if (dataState is DataSuccess) {
-      emit(RemoteFirebaseLoggedIn(dataState.data));
+      emit(RemoteFirebaseLoggedIn(dataState.data!));
     } else if (dataState is DataFailed) {
       emit(const RemoteFirebaseLoggedOut());
     }

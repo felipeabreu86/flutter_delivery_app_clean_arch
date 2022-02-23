@@ -12,6 +12,6 @@ class LoginUseCase
 
   @override
   Future<DataState<AppUser>> call({required UserRequestParams params}) {
-    return _firebaseRepository.login(params);
+    return _firebaseRepository.loginWithEmailPassword(params);
   }
 }

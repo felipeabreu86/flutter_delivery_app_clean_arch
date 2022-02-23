@@ -1,7 +1,6 @@
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
-import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
 
@@ -11,7 +10,9 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   final FirebaseService _firebaseService;
 
   @override
-  Future<DataState<AppUser>> login(UserRequestParams params) async {
+  Future<DataState<AppUser>> loginWithEmailPassword(
+    UserRequestParams params,
+  ) async {
     try {
       final response = await _firebaseService.loginWithEmailPassword(
         email: params.email,
@@ -21,13 +22,10 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
       if (response.userId.isNotEmpty) {
         return DataSuccess(response);
       } else {
-        return DataFailed(response, errorMessage: 'Erro no login.');
+        return const DataFailed(errorMessage: 'Erro no login.');
       }
     } catch (error) {
-      return DataFailed(
-        AppUserModel.empty(),
-        errorMessage: error.toString(),
-      );
+      return DataFailed(errorMessage: error.toString());
     }
   }
 
@@ -39,13 +37,10 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
       if (response.userId.isNotEmpty) {
         return DataSuccess(response);
       } else {
-        return DataFailed(response);
+        return const DataFailed();
       }
     } catch (error) {
-      return DataFailed(
-        AppUserModel.empty(),
-        errorMessage: error.toString(),
-      );
+      return DataFailed(errorMessage: error.toString());
     }
   }
 }
