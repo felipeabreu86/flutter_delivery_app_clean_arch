@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LoginScreen extends HookWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class HomeScreen extends HookWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Tela de Login"),
+        child: Text("Tela Home"),
       ),
     );
   }

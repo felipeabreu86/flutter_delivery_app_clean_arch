@@ -1,10 +1,11 @@
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/usecases/usecase.dart';
+import 'package:flutter_delivery_app_clean_arch/src/core/usecases/usecase_with_params.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
 
-class LoginUseCase implements UseCase<DataState<AppUser>, UserRequestParams> {
+class LoginUseCase
+    implements UseCaseWithParams<DataState<AppUser>, UserRequestParams> {
   LoginUseCase(this._firebaseRepository);
 
   final FirebaseRepository _firebaseRepository;

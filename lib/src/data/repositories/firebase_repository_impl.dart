@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
@@ -14,7 +13,7 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   @override
   Future<DataState<AppUser>> login(UserRequestParams params) async {
     try {
-      final response = await _firebaseService.login(
+      final response = await _firebaseService.loginWithEmailPassword(
         email: params.email,
         password: params.password,
       );
@@ -22,12 +21,31 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
       if (response.userId.isNotEmpty) {
         return DataSuccess(response);
       } else {
+        return DataFailed(response, errorMessage: 'Erro no login.');
+      }
+    } catch (error) {
+      return DataFailed(
+        AppUserModel.empty(),
+        errorMessage: error.toString(),
+      );
+    }
+  }
+
+  @override
+  Future<DataState<AppUser>> checkAuthentication() async {
+    try {
+      final response = await _firebaseService.checkAuthentication();
+
+      if (response.userId.isNotEmpty) {
+        return DataSuccess(response);
+      } else {
         return DataFailed(response);
       }
-    } on DioError catch (e) {
-      return DataFailed(AppUserModel.empty(), error: e);
     } catch (error) {
-      return DataFailed(AppUserModel.empty());
+      return DataFailed(
+        AppUserModel.empty(),
+        errorMessage: error.toString(),
+      );
     }
   }
 }
