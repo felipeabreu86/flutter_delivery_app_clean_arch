@@ -9,6 +9,7 @@ import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/cep_search_u
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
+import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_viacep/remote_viacep_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final injector = GetIt.instance;
@@ -47,5 +48,8 @@ Future<void> initializeDependencies() async {
   // Blocs
   injector.registerSingleton<RemoteFirebaseBloc>(
     RemoteFirebaseBloc(injector(), injector()),
+  );
+  injector.registerSingleton<RemoteViacepBloc>(
+    RemoteViacepBloc(injector()),
   );
 }

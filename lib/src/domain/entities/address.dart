@@ -26,18 +26,20 @@ class Address extends Equatable {
   final String siafi;
 
   @override
-  List<Object?> get props => [
-        cep,
-        logradouro,
-        complemento,
-        bairro,
-        localidade,
-        uf,
-        ibge,
-        gia,
-        ddd,
-        siafi,
-      ];
+  List<Object> get props {
+    return [
+      cep,
+      logradouro,
+      complemento,
+      bairro,
+      localidade,
+      uf,
+      ibge,
+      gia,
+      ddd,
+      siafi,
+    ];
+  }
 
   @override
   bool get stringify => true;
