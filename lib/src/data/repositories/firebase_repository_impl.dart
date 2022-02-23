@@ -13,34 +13,26 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   Future<DataState<AppUser>> loginWithEmailPassword(
     UserRequestParams params,
   ) async {
-    try {
-      final response = await _firebaseService.loginWithEmailPassword(
-        email: params.email,
-        password: params.password,
-      );
+    final response = await _firebaseService.loginWithEmailPassword(
+      email: params.email,
+      password: params.password,
+    );
 
-      if (response.userId.isNotEmpty) {
-        return DataSuccess(response);
-      } else {
-        return const DataFailed(errorMessage: 'Erro no login.');
-      }
-    } catch (error) {
-      return DataFailed(errorMessage: error.toString());
+    if (response.userId.isNotEmpty) {
+      return DataSuccess(response);
+    } else {
+      return const DataFailed();
     }
   }
 
   @override
   Future<DataState<AppUser>> checkAuthentication() async {
-    try {
-      final response = await _firebaseService.checkAuthentication();
+    final response = await _firebaseService.checkAuthentication();
 
-      if (response.userId.isNotEmpty) {
-        return DataSuccess(response);
-      } else {
-        return const DataFailed();
-      }
-    } catch (error) {
-      return DataFailed(errorMessage: error.toString());
+    if (response.userId.isNotEmpty) {
+      return DataSuccess(response);
+    } else {
+      return const DataFailed();
     }
   }
 }

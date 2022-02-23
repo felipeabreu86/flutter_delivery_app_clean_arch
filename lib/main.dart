@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_delivery_app_clean_arch/src/config/routes/app_routes.dart';
 import 'package:flutter_delivery_app_clean_arch/src/config/themes/app_theme.dart';
@@ -8,8 +10,14 @@ import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_fi
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await initializeDependencies();
-  runApp(const DeliveryApp());
+
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  ).then((_) {
+    runApp(const DeliveryApp());
+  });
 }
 
 class DeliveryApp extends StatelessWidget {

@@ -15,7 +15,7 @@ class ViaCepRepositoryImpl implements ViaCepRepository {
     if (response.data.cep.isNotEmpty) {
       return DataSuccess(response.data);
     } else {
-      return const DataFailed(errorMessage: 'Erro ao buscar CEP.');
+      return const DataFailed();
     }
   }
 }
