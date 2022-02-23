@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/via_cep_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/repositories/firebase_repository_impl.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/repositories/via_cep_repository_impl.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/via_cep_repository.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/cep_search_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
@@ -26,6 +29,9 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<FirebaseRepository>(
     FirebaseRepositoryImpl(injector()),
   );
+  injector.registerSingleton<ViaCepRepository>(
+    ViaCepRepositoryImpl(injector()),
+  );
 
   // Usecases
   injector.registerSingleton<LoginUseCase>(
@@ -33,6 +39,9 @@ Future<void> initializeDependencies() async {
   );
   injector.registerSingleton<CheckAuthenticationUseCase>(
     CheckAuthenticationUseCase(injector()),
+  );
+  injector.registerSingleton<CepSearchUseCase>(
+    CepSearchUseCase(injector()),
   );
 
   // Blocs
