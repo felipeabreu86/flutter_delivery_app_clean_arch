@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/via_cep_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/repositories/firebase_repository_impl.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
@@ -9,9 +11,15 @@ import 'package:get_it/get_it.dart';
 final injector = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // Dio client
+  injector.registerSingleton<Dio>(Dio());
+
   // Datasources
   injector.registerSingleton<FirebaseService>(
     FirebaseService(),
+  );
+  injector.registerSingleton<ViaCepService>(
+    ViaCepService(injector()),
   );
 
   // Repositories
