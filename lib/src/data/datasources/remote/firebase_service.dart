@@ -66,4 +66,33 @@ class FirebaseService {
     }
     return userLoggedOut;
   }
+
+  Future<AppUserModel> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+    required String fullname,
+  }) async {
+    AppUserModel userModel = AppUserModel.empty();
+    _errorMessage = '';
+    try {
+      final UserCredential credential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      if (credential.user?.uid.isNotEmpty ?? false) {
+        final User currentUser = credential.user!;
+        await currentUser.updateDisplayName(fullname);
+
+        userModel = AppUserModel(
+          userId: currentUser.uid,
+          fullName: currentUser.displayName ?? '',
+          email: currentUser.email ?? '',
+          imageUrl: currentUser.photoURL ?? '',
+          role: '',
+        );
+      }
+    } catch (error) {
+      _errorMessage = error.toString();
+    }
+    return userModel;
+  }
 }

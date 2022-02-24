@@ -18,7 +18,7 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
       password: params.password,
     );
 
-    if (response.userId.isNotEmpty) {
+    if (response.isValid) {
       return DataSuccess(response);
     } else {
       return const DataFailed();
@@ -29,7 +29,7 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
   Future<DataState<AppUser>> checkAuthentication() async {
     final response = await _firebaseService.checkAuthentication();
 
-    if (response.userId.isNotEmpty) {
+    if (response.isValid) {
       return DataSuccess(response);
     } else {
       return const DataFailed();
@@ -41,6 +41,23 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
     final response = await _firebaseService.signOut();
 
     if (response) {
+      return DataSuccess(response);
+    } else {
+      return const DataFailed();
+    }
+  }
+
+  @override
+  Future<DataState<AppUser>> createUserWithEmailAndPassword(
+    UserRequestParams params,
+  ) async {
+    final response = await _firebaseService.createUserWithEmailAndPassword(
+      email: params.email,
+      password: params.password,
+      fullname: params.fullname ?? '',
+    );
+
+    if (response.isValid) {
       return DataSuccess(response);
     } else {
       return const DataFailed();

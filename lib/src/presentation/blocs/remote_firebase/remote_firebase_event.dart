@@ -21,3 +21,8 @@ class LoginWithEmailAndPassword extends RemoteFirebaseEvent {
 class SignOut extends RemoteFirebaseEvent {
   const SignOut() : super();
 }
+
+class CreateUserWithEmailAndPassword extends RemoteFirebaseEvent {
+  const CreateUserWithEmailAndPassword(UserRequestParams params)
+      : super(params: params);
+}

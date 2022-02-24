@@ -8,6 +8,7 @@ import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.da
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/create_user_with_email_password_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_with_email_password_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/signout_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/injector.dart';
@@ -21,6 +22,7 @@ class RemoteFirebaseBloc
     this._loginWithEmailAndPasswordUseCase,
     this._checkAuthenticationUseCase,
     this._signOutUseCase,
+    this._createUserWithEmailAndPasswordUseCase,
   ) : super(const RemoteFirebaseInitial()) {
     on<CheckAuthentication>(
       _checkAuthentication,
@@ -34,11 +36,20 @@ class RemoteFirebaseBloc
       _signOut,
       transformer: sequential(),
     );
+    on<CreateUserWithEmailAndPassword>(
+      _createUserWithEmailAndPassword,
+      transformer: sequential(),
+    );
   }
 
   final LoginWithEmailAndPasswordUseCase _loginWithEmailAndPasswordUseCase;
+
   final CheckAuthenticationUseCase _checkAuthenticationUseCase;
+
   final SignOutUseCase _signOutUseCase;
+
+  final CreateUserWithEmailAndPasswordUseCase
+      _createUserWithEmailAndPasswordUseCase;
 
   FutureOr<void> _loginWithEmailAndPassword(
     RemoteFirebaseEvent event,
@@ -49,7 +60,7 @@ class RemoteFirebaseBloc
         params: event.params!,
       );
 
-      if (dataState is DataSuccess && dataState.data!.isValid) {
+      if (dataState is DataSuccess) {
         emit(RemoteFirebaseLoggedIn(dataState.data!));
       } else if (dataState is DataFailed) {
         final String errorMessage = injector<FirebaseService>().errorMessage;
@@ -82,6 +93,24 @@ class RemoteFirebaseBloc
     } else if (dataState is DataFailed) {
       final String errorMessage = injector<FirebaseService>().errorMessage;
       emit(RemoteFirebaseError(errorMessage: errorMessage));
+    }
+  }
+
+  FutureOr<void> _createUserWithEmailAndPassword(
+    RemoteFirebaseEvent event,
+    Emitter<RemoteFirebaseState> emit,
+  ) async {
+    if (event.params != null) {
+      final dataState = await _createUserWithEmailAndPasswordUseCase(
+        params: event.params!,
+      );
+
+      if (dataState is DataSuccess) {
+        emit(RemoteFirebaseLoggedIn(dataState.data!));
+      } else if (dataState is DataFailed) {
+        final String errorMessage = injector<FirebaseService>().errorMessage;
+        emit(RemoteFirebaseError(errorMessage: errorMessage));
+      }
     }
   }
 }

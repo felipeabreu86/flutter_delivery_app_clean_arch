@@ -7,6 +7,7 @@ import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/via_cep_repository.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/cep_search_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/create_user_with_email_password_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_with_email_password_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/signout_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
@@ -48,10 +49,13 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<SignOutUseCase>(
     SignOutUseCase(injector()),
   );
+  injector.registerSingleton<CreateUserWithEmailAndPasswordUseCase>(
+    CreateUserWithEmailAndPasswordUseCase(injector()),
+  );
 
   // Blocs
   injector.registerSingleton<RemoteFirebaseBloc>(
-    RemoteFirebaseBloc(injector(), injector(), injector()),
+    RemoteFirebaseBloc(injector(), injector(), injector(), injector()),
   );
   injector.registerSingleton<RemoteViacepBloc>(
     RemoteViacepBloc(injector()),
