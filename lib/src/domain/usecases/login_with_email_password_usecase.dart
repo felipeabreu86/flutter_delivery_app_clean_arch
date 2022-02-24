@@ -4,9 +4,9 @@ import 'package:flutter_delivery_app_clean_arch/src/core/usecases/usecase_with_p
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
 
-class LoginUseCase
+class LoginWithEmailAndPasswordUseCase
     implements UseCaseWithParams<DataState<AppUser>, UserRequestParams> {
-  LoginUseCase(this._firebaseRepository);
+  LoginWithEmailAndPasswordUseCase(this._firebaseRepository);
 
   final FirebaseRepository _firebaseRepository;
 

@@ -35,4 +35,15 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
       return const DataFailed();
     }
   }
+
+  @override
+  Future<DataState<bool>> signOut() async {
+    final response = await _firebaseService.signOut();
+
+    if (response) {
+      return DataSuccess(response);
+    } else {
+      return const DataFailed();
+    }
+  }
 }

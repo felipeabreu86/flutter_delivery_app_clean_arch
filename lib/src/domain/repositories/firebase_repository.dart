@@ -5,4 +5,5 @@ import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dar
 abstract class FirebaseRepository {
   Future<DataState<AppUser>> loginWithEmailPassword(UserRequestParams params);
   Future<DataState<AppUser>> checkAuthentication();
+  Future<DataState<bool>> signOut();
 }

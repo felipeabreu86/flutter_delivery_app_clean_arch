@@ -9,10 +9,15 @@ abstract class RemoteFirebaseEvent extends Equatable {
   List<Object?> get props => [params];
 }
 
-class Login extends RemoteFirebaseEvent {
-  const Login(UserRequestParams params) : super(params: params);
-}
-
 class CheckAuthentication extends RemoteFirebaseEvent {
   const CheckAuthentication() : super();
+}
+
+class LoginWithEmailAndPassword extends RemoteFirebaseEvent {
+  const LoginWithEmailAndPassword(UserRequestParams params)
+      : super(params: params);
+}
+
+class SignOut extends RemoteFirebaseEvent {
+  const SignOut() : super();
 }

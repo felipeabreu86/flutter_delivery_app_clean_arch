@@ -52,4 +52,18 @@ class FirebaseService {
     }
     return userModel;
   }
+
+  Future<bool> signOut() async {
+    _errorMessage = '';
+    bool userLoggedOut = false;
+    try {
+      await _firebaseAuth.signOut();
+      if (_firebaseAuth.currentUser == null) {
+        userLoggedOut = true;
+      }
+    } catch (error) {
+      _errorMessage = error.toString();
+    }
+    return userLoggedOut;
+  }
 }

@@ -1,14 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
+import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ionicons/ionicons.dart';
 
 class LoginScreen extends HookWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return Scaffold(
+      body: const Center(
         child: Text("Tela de Login"),
+      ),
+      floatingActionButton: _buildFloatingActionButton(),
+    );
+  }
+
+  Widget _buildFloatingActionButton() {
+    return Builder(
+      builder: (context) => FloatingActionButton(
+        onPressed: () => _onFloatingActionButtonPressed(context),
+        child: const Icon(Ionicons.log_in, color: Colors.white),
+      ),
+    );
+  }
+
+  void _onFloatingActionButtonPressed(BuildContext context) {
+    BlocProvider.of<RemoteFirebaseBloc>(context).add(
+      LoginWithEmailAndPassword(
+        UserRequestParams("felipeabreu.rj@gmail.com", "123456"),
       ),
     );
   }
