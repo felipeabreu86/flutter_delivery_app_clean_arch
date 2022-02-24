@@ -42,6 +42,8 @@ class RemoteFirebaseBloc
     );
   }
 
+  /// Usecases
+
   final LoginWithEmailAndPasswordUseCase _loginWithEmailAndPasswordUseCase;
 
   final CheckAuthenticationUseCase _checkAuthenticationUseCase;
@@ -50,6 +52,13 @@ class RemoteFirebaseBloc
 
   final CreateUserWithEmailAndPasswordUseCase
       _createUserWithEmailAndPasswordUseCase;
+
+  /// Attributes
+
+  AppUser _user = AppUser.empty();
+  AppUser get user => _user;
+
+  /// Implementation of Events
 
   FutureOr<void> _loginWithEmailAndPassword(
     RemoteFirebaseEvent event,
@@ -61,7 +70,8 @@ class RemoteFirebaseBloc
       );
 
       if (dataState is DataSuccess) {
-        emit(RemoteFirebaseLoggedIn(dataState.data!));
+        _user = dataState.data!;
+        emit(RemoteFirebaseLoggedIn(_user));
       } else if (dataState is DataFailed) {
         final String errorMessage = injector<FirebaseService>().errorMessage;
         emit(RemoteFirebaseError(errorMessage: errorMessage));
@@ -76,7 +86,8 @@ class RemoteFirebaseBloc
     final dataState = await _checkAuthenticationUseCase();
 
     if (dataState is DataSuccess) {
-      emit(RemoteFirebaseLoggedIn(dataState.data!));
+      _user = dataState.data!;
+      emit(RemoteFirebaseLoggedIn(_user));
     } else if (dataState is DataFailed) {
       emit(const RemoteFirebaseLoggedOut());
     }
@@ -89,6 +100,7 @@ class RemoteFirebaseBloc
     final dataState = await _signOutUseCase();
 
     if (dataState is DataSuccess) {
+      _user = AppUser.empty();
       emit(const RemoteFirebaseLoggedOut());
     } else if (dataState is DataFailed) {
       final String errorMessage = injector<FirebaseService>().errorMessage;
@@ -106,7 +118,8 @@ class RemoteFirebaseBloc
       );
 
       if (dataState is DataSuccess) {
-        emit(RemoteFirebaseLoggedIn(dataState.data!));
+        _user = dataState.data!;
+        emit(RemoteFirebaseLoggedIn(_user));
       } else if (dataState is DataFailed) {
         final String errorMessage = injector<FirebaseService>().errorMessage;
         emit(RemoteFirebaseError(errorMessage: errorMessage));

@@ -9,6 +9,16 @@ class AppUser extends Equatable {
     required this.role,
   });
 
+  factory AppUser.empty() {
+    return const AppUser(
+      userId: '',
+      fullName: '',
+      email: '',
+      imageUrl: '',
+      role: '',
+    );
+  }
+
   final String userId;
   final String fullName;
   final String email;
