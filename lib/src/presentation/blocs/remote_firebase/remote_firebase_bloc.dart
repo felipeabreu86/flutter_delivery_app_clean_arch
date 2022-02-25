@@ -65,17 +65,19 @@ class RemoteFirebaseBloc
     Emitter<RemoteFirebaseState> emit,
   ) async {
     if (event.params != null) {
-      final dataState = await _loginWithEmailAndPasswordUseCase(
-        params: event.params!,
-      );
+      await runBlocProcess(() async {
+        final dataState = await _loginWithEmailAndPasswordUseCase(
+          params: event.params!,
+        );
 
-      if (dataState is DataSuccess) {
-        _user = dataState.data!;
-        emit(RemoteFirebaseLoggedIn(_user));
-      } else if (dataState is DataFailed) {
-        final String errorMessage = injector<FirebaseService>().errorMessage;
-        emit(RemoteFirebaseError(errorMessage: errorMessage));
-      }
+        if (dataState is DataSuccess) {
+          _user = dataState.data!;
+          emit(RemoteFirebaseLoggedIn(_user));
+        } else if (dataState is DataFailed) {
+          final String errorMessage = injector<FirebaseService>().errorMessage;
+          emit(RemoteFirebaseError(errorMessage: errorMessage));
+        }
+      });
     }
   }
 
@@ -83,29 +85,33 @@ class RemoteFirebaseBloc
     RemoteFirebaseEvent event,
     Emitter<RemoteFirebaseState> emit,
   ) async {
-    final dataState = await _checkAuthenticationUseCase();
+    await runBlocProcess(() async {
+      final dataState = await _checkAuthenticationUseCase();
 
-    if (dataState is DataSuccess) {
-      _user = dataState.data!;
-      emit(RemoteFirebaseLoggedIn(_user));
-    } else if (dataState is DataFailed) {
-      emit(const RemoteFirebaseLoggedOut());
-    }
+      if (dataState is DataSuccess) {
+        _user = dataState.data!;
+        emit(RemoteFirebaseLoggedIn(_user));
+      } else if (dataState is DataFailed) {
+        emit(const RemoteFirebaseLoggedOut());
+      }
+    });
   }
 
   FutureOr<void> _signOut(
     RemoteFirebaseEvent event,
     Emitter<RemoteFirebaseState> emit,
   ) async {
-    final dataState = await _signOutUseCase();
+    await runBlocProcess(() async {
+      final dataState = await _signOutUseCase();
 
-    if (dataState is DataSuccess) {
-      _user = AppUser.empty();
-      emit(const RemoteFirebaseLoggedOut());
-    } else if (dataState is DataFailed) {
-      final String errorMessage = injector<FirebaseService>().errorMessage;
-      emit(RemoteFirebaseError(errorMessage: errorMessage));
-    }
+      if (dataState is DataSuccess) {
+        _user = AppUser.empty();
+        emit(const RemoteFirebaseLoggedOut());
+      } else if (dataState is DataFailed) {
+        final String errorMessage = injector<FirebaseService>().errorMessage;
+        emit(RemoteFirebaseError(errorMessage: errorMessage));
+      }
+    });
   }
 
   FutureOr<void> _createUserWithEmailAndPassword(
@@ -113,17 +119,19 @@ class RemoteFirebaseBloc
     Emitter<RemoteFirebaseState> emit,
   ) async {
     if (event.params != null) {
-      final dataState = await _createUserWithEmailAndPasswordUseCase(
-        params: event.params!,
-      );
+      await runBlocProcess(() async {
+        final dataState = await _createUserWithEmailAndPasswordUseCase(
+          params: event.params!,
+        );
 
-      if (dataState is DataSuccess) {
-        _user = dataState.data!;
-        emit(RemoteFirebaseLoggedIn(_user));
-      } else if (dataState is DataFailed) {
-        final String errorMessage = injector<FirebaseService>().errorMessage;
-        emit(RemoteFirebaseError(errorMessage: errorMessage));
-      }
+        if (dataState is DataSuccess) {
+          _user = dataState.data!;
+          emit(RemoteFirebaseLoggedIn(_user));
+        } else if (dataState is DataFailed) {
+          final String errorMessage = injector<FirebaseService>().errorMessage;
+          emit(RemoteFirebaseError(errorMessage: errorMessage));
+        }
+      });
     }
   }
 }

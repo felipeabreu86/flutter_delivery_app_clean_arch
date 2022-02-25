@@ -29,15 +29,17 @@ class RemoteViacepBloc
     Emitter<RemoteViacepState> emit,
   ) async {
     if (event.params != null) {
-      final dataState = await _cepSearchUseCase(
-        params: event.params!,
-      );
+      await runBlocProcess(() async {
+        final dataState = await _cepSearchUseCase(
+          params: event.params!,
+        );
 
-      if (dataState is DataSuccess) {
-        emit(RemoteViacepDone(dataState.data!));
-      } else if (dataState is DataFailed) {
-        emit(const RemoteViacepError());
-      }
+        if (dataState is DataSuccess) {
+          emit(RemoteViacepDone(dataState.data!));
+        } else if (dataState is DataFailed) {
+          emit(const RemoteViacepError());
+        }
+      });
     }
   }
 }
