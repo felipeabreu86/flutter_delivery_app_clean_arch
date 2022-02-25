@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/bloc/bloc_with_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
-import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_authentication_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/create_user_with_email_password_usecase.dart';
@@ -82,7 +82,8 @@ class RemoteFirebaseBloc
           _user = dataState.data!;
           emit(RemoteFirebaseLoggedIn(_user));
         } else if (dataState is DataFailed) {
-          final String errorMessage = injector<FirebaseService>().errorMessage;
+          final String errorMessage =
+              injector<FirebaseAuthenticationService>().errorMessage;
           emit(RemoteFirebaseError(errorMessage: errorMessage));
         }
       });
@@ -116,7 +117,8 @@ class RemoteFirebaseBloc
         _user = AppUser.empty();
         emit(const RemoteFirebaseLoggedOut());
       } else if (dataState is DataFailed) {
-        final String errorMessage = injector<FirebaseService>().errorMessage;
+        final String errorMessage =
+            injector<FirebaseAuthenticationService>().errorMessage;
         emit(RemoteFirebaseError(errorMessage: errorMessage));
       }
     });
@@ -136,7 +138,8 @@ class RemoteFirebaseBloc
           _user = dataState.data!;
           emit(RemoteFirebaseLoggedIn(_user));
         } else if (dataState is DataFailed) {
-          final String errorMessage = injector<FirebaseService>().errorMessage;
+          final String errorMessage =
+              injector<FirebaseAuthenticationService>().errorMessage;
           emit(RemoteFirebaseError(errorMessage: errorMessage));
         }
       });
@@ -156,7 +159,8 @@ class RemoteFirebaseBloc
         if (dataState is DataSuccess) {
           emit(const RemoteFirebaseResetPasswordSentByEmail());
         } else if (dataState is DataFailed) {
-          final String errorMessage = injector<FirebaseService>().errorMessage;
+          final String errorMessage =
+              injector<FirebaseAuthenticationService>().errorMessage;
           emit(RemoteFirebaseError(errorMessage: errorMessage));
         }
       });

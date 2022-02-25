@@ -2,7 +2,7 @@ import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dar
 import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
 
-abstract class FirebaseRepository {
+abstract class AuthenticationRepository {
   Future<DataState<AppUser>> loginWithEmailPassword(
     UserRequestParams params,
   );

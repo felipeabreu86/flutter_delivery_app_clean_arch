@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_service.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/firebase_authentication_service.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/datasources/remote/via_cep_service.dart';
-import 'package:flutter_delivery_app_clean_arch/src/data/repositories/firebase_repository_impl.dart';
+import 'package:flutter_delivery_app_clean_arch/src/data/repositories/authentication_repository_impl.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/repositories/via_cep_repository_impl.dart';
-import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/firebase_repository.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/datasources/remote/authentication_service.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/authentication_repository.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/via_cep_repository.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/cep_search_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
@@ -22,16 +23,16 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<Dio>(Dio());
 
   // Datasources
-  injector.registerSingleton<FirebaseService>(
-    FirebaseService(),
+  injector.registerSingleton<AuthenticationService>(
+    FirebaseAuthenticationService(),
   );
   injector.registerSingleton<ViaCepService>(
     ViaCepService(injector()),
   );
 
   // Repositories
-  injector.registerSingleton<FirebaseRepository>(
-    FirebaseRepositoryImpl(injector()),
+  injector.registerSingleton<AuthenticationRepository>(
+    AuthenticationRepositoryImpl(injector()),
   );
   injector.registerSingleton<ViaCepRepository>(
     ViaCepRepositoryImpl(injector()),

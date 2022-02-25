@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/datasources/remote/authentication_service.dart';
 
-class FirebaseService {
+class FirebaseAuthenticationService implements AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
+  @override
   Future<AppUserModel> loginWithEmailPassword({
     required String email,
     required String password,
@@ -33,6 +35,7 @@ class FirebaseService {
     return userModel;
   }
 
+  @override
   Future<AppUserModel> checkAuthentication() async {
     AppUserModel userModel = AppUserModel.empty();
     _errorMessage = '';
@@ -53,6 +56,7 @@ class FirebaseService {
     return userModel;
   }
 
+  @override
   Future<bool> signOut() async {
     _errorMessage = '';
     bool userLoggedOut = false;
@@ -67,6 +71,7 @@ class FirebaseService {
     return userLoggedOut;
   }
 
+  @override
   Future<AppUserModel> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -96,6 +101,7 @@ class FirebaseService {
     return userModel;
   }
 
+  @override
   Future<void> sendPasswordResetEmail({required String email}) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
