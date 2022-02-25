@@ -30,7 +30,10 @@ class LoginScreen extends HookWidget {
   void _onFloatingActionButtonPressed(BuildContext context) {
     BlocProvider.of<RemoteFirebaseBloc>(context).add(
       LoginWithEmailAndPassword(
-        UserRequestParams("felipeabreu.rj@gmail.com", "123456"),
+        UserRequestParams(
+          email: "felipeabreu.rj@gmail.com",
+          password: "123456",
+        ),
       ),
     );
   }

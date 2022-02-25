@@ -22,6 +22,10 @@ class RemoteFirebaseLoggedOut extends RemoteFirebaseState {
   const RemoteFirebaseLoggedOut() : super();
 }
 
+class RemoteFirebaseResetPasswordSentByEmail extends RemoteFirebaseState {
+  const RemoteFirebaseResetPasswordSentByEmail() : super();
+}
+
 class RemoteFirebaseError extends RemoteFirebaseState {
   const RemoteFirebaseError({String? errorMessage})
       : super(errorMessage: errorMessage);

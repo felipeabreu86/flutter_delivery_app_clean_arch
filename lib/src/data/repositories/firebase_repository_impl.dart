@@ -14,8 +14,8 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
     UserRequestParams params,
   ) async {
     final response = await _firebaseService.loginWithEmailPassword(
-      email: params.email,
-      password: params.password,
+      email: params.email ?? '',
+      password: params.password ?? '',
     );
 
     if (response.isValid) {
@@ -52,14 +52,26 @@ class FirebaseRepositoryImpl implements FirebaseRepository {
     UserRequestParams params,
   ) async {
     final response = await _firebaseService.createUserWithEmailAndPassword(
-      email: params.email,
-      password: params.password,
+      email: params.email ?? '',
+      password: params.password ?? '',
       fullname: params.fullname ?? '',
     );
 
     if (response.isValid) {
       return DataSuccess(response);
     } else {
+      return const DataFailed();
+    }
+  }
+
+  @override
+  Future<DataState<bool>> sendPasswordResetEmail(
+    UserRequestParams params,
+  ) async {
+    try {
+      await _firebaseService.sendPasswordResetEmail(email: params.email ?? '');
+      return const DataSuccess(true);
+    } catch (error) {
       return const DataFailed();
     }
   }

@@ -10,6 +10,7 @@ import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dar
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/check_auth_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/create_user_with_email_password_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/login_with_email_password_usecase.dart';
+import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/send_password_reset_email.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/signout_usecase.dart';
 import 'package:flutter_delivery_app_clean_arch/src/injector.dart';
 
@@ -23,6 +24,7 @@ class RemoteFirebaseBloc
     this._checkAuthenticationUseCase,
     this._signOutUseCase,
     this._createUserWithEmailAndPasswordUseCase,
+    this._sendPasswordResetEmailUsecase,
   ) : super(const RemoteFirebaseInitial()) {
     on<CheckAuthentication>(
       _checkAuthentication,
@@ -40,6 +42,10 @@ class RemoteFirebaseBloc
       _createUserWithEmailAndPassword,
       transformer: sequential(),
     );
+    on<SendPasswordResetEmail>(
+      _sendPasswordResetEmail,
+      transformer: sequential(),
+    );
   }
 
   /// Usecases
@@ -52,6 +58,8 @@ class RemoteFirebaseBloc
 
   final CreateUserWithEmailAndPasswordUseCase
       _createUserWithEmailAndPasswordUseCase;
+
+  final SendPasswordResetEmailUsecase _sendPasswordResetEmailUsecase;
 
   /// Attributes
 
@@ -127,6 +135,26 @@ class RemoteFirebaseBloc
         if (dataState is DataSuccess) {
           _user = dataState.data!;
           emit(RemoteFirebaseLoggedIn(_user));
+        } else if (dataState is DataFailed) {
+          final String errorMessage = injector<FirebaseService>().errorMessage;
+          emit(RemoteFirebaseError(errorMessage: errorMessage));
+        }
+      });
+    }
+  }
+
+  FutureOr<void> _sendPasswordResetEmail(
+    RemoteFirebaseEvent event,
+    Emitter<RemoteFirebaseState> emit,
+  ) async {
+    if (event.params != null) {
+      await runBlocProcess(() async {
+        final dataState = await _sendPasswordResetEmailUsecase(
+          params: event.params!,
+        );
+
+        if (dataState is DataSuccess) {
+          emit(const RemoteFirebaseResetPasswordSentByEmail());
         } else if (dataState is DataFailed) {
           final String errorMessage = injector<FirebaseService>().errorMessage;
           emit(RemoteFirebaseError(errorMessage: errorMessage));

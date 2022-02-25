@@ -26,3 +26,8 @@ class CreateUserWithEmailAndPassword extends RemoteFirebaseEvent {
   const CreateUserWithEmailAndPassword(UserRequestParams params)
       : super(params: params);
 }
+
+class SendPasswordResetEmail extends RemoteFirebaseEvent {
+  const SendPasswordResetEmail(UserRequestParams params)
+      : super(params: params);
+}
