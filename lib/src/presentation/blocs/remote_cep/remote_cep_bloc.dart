@@ -9,13 +9,11 @@ import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.da
 import 'package:flutter_delivery_app_clean_arch/src/domain/entities/address.dart';
 import 'package:flutter_delivery_app_clean_arch/src/domain/usecases/cep_search_usecase.dart';
 
-part 'remote_viacep_event.dart';
-part 'remote_viacep_state.dart';
+part 'remote_cep_event.dart';
+part 'remote_cep_state.dart';
 
-class RemoteViacepBloc
-    extends BlocWithState<RemoteViacepEvent, RemoteViacepState> {
-  RemoteViacepBloc(this._cepSearchUseCase)
-      : super(const RemoteViacepInitial()) {
+class RemoteCepBloc extends BlocWithState<RemoteCepEvent, RemoteCepState> {
+  RemoteCepBloc(this._cepSearchUseCase) : super(const RemoteCepInitial()) {
     on<CepSearch>(
       _cepSearch,
       transformer: sequential(),
@@ -25,8 +23,8 @@ class RemoteViacepBloc
   final CepSearchUseCase _cepSearchUseCase;
 
   FutureOr<void> _cepSearch(
-    RemoteViacepEvent event,
-    Emitter<RemoteViacepState> emit,
+    RemoteCepEvent event,
+    Emitter<RemoteCepState> emit,
   ) async {
     if (event.params != null) {
       await runBlocProcess(() async {
@@ -35,9 +33,9 @@ class RemoteViacepBloc
         );
 
         if (dataState is DataSuccess) {
-          emit(RemoteViacepDone(dataState.data!));
+          emit(RemoteCepDone(dataState.data!));
         } else if (dataState is DataFailed) {
-          emit(const RemoteViacepError());
+          emit(const RemoteCepError());
         }
       });
     }

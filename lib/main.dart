@@ -6,7 +6,7 @@ import 'package:flutter_delivery_app_clean_arch/src/config/routes/app_routes.dar
 import 'package:flutter_delivery_app_clean_arch/src/config/themes/app_theme.dart';
 import 'package:flutter_delivery_app_clean_arch/src/core/utils/constants.dart';
 import 'package:flutter_delivery_app_clean_arch/src/injector.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_firebase/remote_firebase_bloc.dart';
+import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class DeliveryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteFirebaseBloc>(
+    return BlocProvider<RemoteAuthenticationBloc>(
       create: (_) => injector()..add(const CheckAuthentication()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

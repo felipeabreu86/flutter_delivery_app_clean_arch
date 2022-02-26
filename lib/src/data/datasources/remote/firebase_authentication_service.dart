@@ -5,16 +5,12 @@ import 'package:flutter_delivery_app_clean_arch/src/domain/datasources/remote/au
 class FirebaseAuthenticationService implements AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  String _errorMessage = '';
-  String get errorMessage => _errorMessage;
-
   @override
   Future<AppUserModel> loginWithEmailPassword({
     required String email,
     required String password,
   }) async {
     AppUserModel userModel = AppUserModel.empty();
-    _errorMessage = '';
     try {
       final UserCredential credential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
@@ -29,16 +25,13 @@ class FirebaseAuthenticationService implements AuthenticationService {
           role: '',
         );
       }
-    } catch (error) {
-      _errorMessage = error.toString();
-    }
+    } catch (_) {}
     return userModel;
   }
 
   @override
   Future<AppUserModel> checkAuthentication() async {
     AppUserModel userModel = AppUserModel.empty();
-    _errorMessage = '';
     try {
       if (_firebaseAuth.currentUser != null) {
         final User currentUser = _firebaseAuth.currentUser!;
@@ -50,24 +43,19 @@ class FirebaseAuthenticationService implements AuthenticationService {
           role: '',
         );
       }
-    } catch (error) {
-      _errorMessage = error.toString();
-    }
+    } catch (_) {}
     return userModel;
   }
 
   @override
   Future<bool> signOut() async {
-    _errorMessage = '';
     bool userLoggedOut = false;
     try {
       await _firebaseAuth.signOut();
       if (_firebaseAuth.currentUser == null) {
         userLoggedOut = true;
       }
-    } catch (error) {
-      _errorMessage = error.toString();
-    }
+    } catch (_) {}
     return userLoggedOut;
   }
 
@@ -78,7 +66,6 @@ class FirebaseAuthenticationService implements AuthenticationService {
     required String fullname,
   }) async {
     AppUserModel userModel = AppUserModel.empty();
-    _errorMessage = '';
     try {
       final UserCredential credential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -95,9 +82,7 @@ class FirebaseAuthenticationService implements AuthenticationService {
           role: '',
         );
       }
-    } catch (error) {
-      _errorMessage = error.toString();
-    }
+    } catch (_) {}
     return userModel;
   }
 
