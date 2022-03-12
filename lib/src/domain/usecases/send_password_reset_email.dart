@@ -1,16 +1,17 @@
-import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/usecases/usecase_with_params.dart';
-import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/authentication_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/errors/failures.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/params/user_request_params.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/usecases/usecase.dart';
+import 'package:flutter_firebase_login_clean_arch/src/domain/repositories/authentication_repository.dart';
 
 class SendPasswordResetEmailUsecase
-    implements UseCaseWithParams<DataState<bool>, UserRequestParams> {
+    implements UseCase<bool, UserRequestParams> {
   SendPasswordResetEmailUsecase(this._authenticationRepository);
 
-  final AuthenticationRepository _authenticationRepository;
+  final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<DataState<bool>> call({required UserRequestParams params}) {
+  Future<Either<Failure, bool>> call(UserRequestParams params) {
     return _authenticationRepository.sendPasswordResetEmail(params);
   }
 }

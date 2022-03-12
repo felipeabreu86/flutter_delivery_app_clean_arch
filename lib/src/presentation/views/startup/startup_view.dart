@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/home/home_view.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/login/login_view.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/startup/components/authentication_error_widget.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/startup/components/unexpected_error_widget.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/home/home_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/login/login_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/components/authentication_error_widget.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/components/unexpected_error_widget.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class StartupScreen extends HookWidget {

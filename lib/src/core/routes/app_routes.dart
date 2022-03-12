@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/utils/constants.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/home/home_view.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/login/login_view.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/views/startup/startup_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/utils/constants.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/home/home_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/login/login_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/startup_view.dart';
 
 Route onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {

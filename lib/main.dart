@@ -2,11 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_delivery_app_clean_arch/src/config/routes/app_routes.dart';
-import 'package:flutter_delivery_app_clean_arch/src/config/themes/app_theme.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/utils/constants.dart';
-import 'package:flutter_delivery_app_clean_arch/src/injector.dart';
-import 'package:flutter_delivery_app_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/routes/app_routes.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/themes/app_theme.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/utils/constants.dart';
+import 'package:flutter_firebase_login_clean_arch/src/injector.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,9 +1,8 @@
 import 'dart:convert';
+import 'package:flutter_firebase_login_clean_arch/src/domain/entities/address.dart';
 
-import 'package:flutter_delivery_app_clean_arch/src/domain/entities/address.dart';
-
-class ViaCepResponseModel extends Address {
-  const ViaCepResponseModel({
+class AddressModel extends Address {
+  const AddressModel({
     required String cep,
     required String logradouro,
     required String complemento,
@@ -27,8 +26,8 @@ class ViaCepResponseModel extends Address {
           siafi: siafi,
         );
 
-  factory ViaCepResponseModel.fromJson(Map<String, dynamic> json) {
-    return ViaCepResponseModel(
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
       cep: json['cep']?.toString() ?? '',
       logradouro: json['logradouro']?.toString() ?? '',
       complemento: json['complemento']?.toString() ?? '',
@@ -42,8 +41,8 @@ class ViaCepResponseModel extends Address {
     );
   }
 
-  factory ViaCepResponseModel.fromMap(Map<String, dynamic> map) {
-    return ViaCepResponseModel(
+  factory AddressModel.fromMap(Map<String, dynamic> map) {
+    return AddressModel(
       cep: map['cep']?.toString() ?? '',
       logradouro: map['logradouro']?.toString() ?? '',
       complemento: map['complemento']?.toString() ?? '',
@@ -57,7 +56,7 @@ class ViaCepResponseModel extends Address {
     );
   }
 
-  ViaCepResponseModel copyWith({
+  AddressModel copyWith({
     String? cep,
     String? logradouro,
     String? complemento,
@@ -69,7 +68,7 @@ class ViaCepResponseModel extends Address {
     String? ddd,
     String? siafi,
   }) {
-    return ViaCepResponseModel(
+    return AddressModel(
       cep: cep ?? this.cep,
       logradouro: logradouro ?? this.logradouro,
       complemento: complemento ?? this.complemento,

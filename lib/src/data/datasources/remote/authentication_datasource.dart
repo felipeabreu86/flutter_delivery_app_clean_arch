@@ -1,6 +1,6 @@
-import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
+import 'package:flutter_firebase_login_clean_arch/src/data/models/app_user_model.dart';
 
-abstract class AuthenticationService {
+abstract class IAuthenticationDatasource {
   Future<AppUserModel> loginWithEmailPassword({
     required String email,
     required String password,

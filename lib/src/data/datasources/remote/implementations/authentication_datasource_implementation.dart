@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_delivery_app_clean_arch/src/data/models/app_user_model.dart';
-import 'package:flutter_delivery_app_clean_arch/src/domain/datasources/remote/authentication_service.dart';
+import 'package:flutter_firebase_login_clean_arch/src/data/datasources/remote/authentication_datasource.dart';
+import 'package:flutter_firebase_login_clean_arch/src/data/models/app_user_model.dart';
 
-class FirebaseAuthenticationService implements AuthenticationService {
+class AuthenticationDatasourceImplementation
+    implements IAuthenticationDatasource {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override

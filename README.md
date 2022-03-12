@@ -1,4 +1,4 @@
-# flutter_delivery_app_clean_arch
+# flutter_firebase_login_clean_arch
 
 A new Flutter project.
 

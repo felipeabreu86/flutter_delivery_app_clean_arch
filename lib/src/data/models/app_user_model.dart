@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
+import 'package:flutter_firebase_login_clean_arch/src/domain/entities/app_user.dart';
 
 class AppUserModel extends AppUser {
   const AppUserModel({

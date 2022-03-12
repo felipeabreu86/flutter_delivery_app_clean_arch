@@ -1,17 +1,18 @@
-import 'package:flutter_delivery_app_clean_arch/src/core/params/user_request.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/resources/data_state.dart';
-import 'package:flutter_delivery_app_clean_arch/src/core/usecases/usecase_with_params.dart';
-import 'package:flutter_delivery_app_clean_arch/src/domain/entities/app_user.dart';
-import 'package:flutter_delivery_app_clean_arch/src/domain/repositories/authentication_repository.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/errors/failures.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/params/user_request_params.dart';
+import 'package:flutter_firebase_login_clean_arch/src/core/usecases/usecase.dart';
+import 'package:flutter_firebase_login_clean_arch/src/domain/entities/app_user.dart';
+import 'package:flutter_firebase_login_clean_arch/src/domain/repositories/authentication_repository.dart';
 
 class CreateUserWithEmailAndPasswordUseCase
-    implements UseCaseWithParams<DataState<AppUser>, UserRequestParams> {
+    implements UseCase<AppUser, UserRequestParams> {
   CreateUserWithEmailAndPasswordUseCase(this._authenticationRepository);
 
-  final AuthenticationRepository _authenticationRepository;
+  final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<DataState<AppUser>> call({required UserRequestParams params}) {
+  Future<Either<Failure, AppUser>> call(UserRequestParams params) {
     return _authenticationRepository.createUserWithEmailAndPassword(params);
   }
 }

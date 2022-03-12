@@ -1,4 +1,4 @@
-name: flutter_delivery_app_clean_arch
+name: flutter_firebase_login_clean_arch
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -23,6 +23,7 @@ dependencies:
   retrofit: ^3.0.1+1
   firebase_auth: ^3.3.7
   firebase_core: ^1.12.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:786785159940:android:ca52e55bc5cbfc21dc5e51",
         "android_client_info": {
-          "package_name": "com.example.flutter_delivery_app_clean_arch"
+          "package_name": "com.example.flutter_firebase_login_clean_arch"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "786785159940-hqtgpj64dgm6dd9es735gptid6eed73q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.flutter_delivery_app_clean_arch",
+            "package_name": "com.example.flutter_firebase_login_clean_arch",
             "certificate_hash": "4e65d6740a2f722b52e3349be07af306351dcef6"
           }
         },
