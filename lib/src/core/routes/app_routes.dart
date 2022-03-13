@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_login_clean_arch/src/core/utils/constants.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/home/home_view.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/login/login_view.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/startup_view.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/home/home_screen.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/login/login_screen.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/startup/startup_screen.dart';
 
 Route onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -19,7 +19,7 @@ Route onGenerateRoutes(RouteSettings settings) {
         const HomeScreen(),
       );
   }
-  throw Exception("Page not found.");
+  throw Exception("Página não encontrada.");
 }
 
 Route<dynamic> _materialRoute(Widget view) {

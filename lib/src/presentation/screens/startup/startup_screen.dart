@@ -2,15 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_login_clean_arch/src/presentation/blocs/remote_authentication/remote_authentication_bloc.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/home/home_view.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/login/login_view.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/components/authentication_error_widget.dart';
-import 'package:flutter_firebase_login_clean_arch/src/presentation/views/startup/components/unexpected_error_widget.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/home/home_screen.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/login/login_screen.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/startup/components/authentication_error_widget.dart';
+import 'package:flutter_firebase_login_clean_arch/src/presentation/screens/startup/components/unexpected_error_widget.dart';
 
-class StartupScreen extends HookWidget {
+class StartupScreen extends StatefulWidget {
   const StartupScreen({Key? key}) : super(key: key);
 
+  @override
+  State<StartupScreen> createState() => _StartupScreenState();
+}
+
+class _StartupScreenState extends State<StartupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

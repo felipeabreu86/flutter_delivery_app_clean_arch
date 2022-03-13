@@ -11,7 +11,9 @@ class SendPasswordResetEmailUsecase
   final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<Either<Failure, bool>> call(UserRequestParams params) {
-    return _authenticationRepository.sendPasswordResetEmail(params);
+  Future<Either<Failure, bool>> call(UserRequestParams params) async {
+    final result =
+        await _authenticationRepository.sendPasswordResetEmail(params);
+    return result;
   }
 }

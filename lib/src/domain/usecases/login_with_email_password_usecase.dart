@@ -12,7 +12,9 @@ class LoginWithEmailAndPasswordUseCase
   final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<Either<Failure, AppUser>> call(UserRequestParams params) {
-    return _authenticationRepository.loginWithEmailPassword(params);
+  Future<Either<Failure, AppUser>> call(UserRequestParams params) async {
+    final result =
+        await _authenticationRepository.loginWithEmailPassword(params);
+    return result;
   }
 }

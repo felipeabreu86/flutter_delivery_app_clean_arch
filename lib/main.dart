@@ -26,7 +26,13 @@ class DeliveryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RemoteAuthenticationBloc>(
-      create: (_) => injector()..add(const CheckAuthentication()),
+      create: (_) => RemoteAuthenticationBloc(
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+        injector(),
+      )..add(const CheckAuthentication()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: kAppTitle,

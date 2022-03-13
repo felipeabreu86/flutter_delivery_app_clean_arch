@@ -12,7 +12,9 @@ class CreateUserWithEmailAndPasswordUseCase
   final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<Either<Failure, AppUser>> call(UserRequestParams params) {
-    return _authenticationRepository.createUserWithEmailAndPassword(params);
+  Future<Either<Failure, AppUser>> call(UserRequestParams params) async {
+    final result =
+        await _authenticationRepository.createUserWithEmailAndPassword(params);
+    return result;
   }
 }

@@ -11,7 +11,8 @@ class CheckAuthenticationUseCase implements UseCase<AppUser, NoRequestParams> {
   final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<Either<Failure, AppUser>> call(NoRequestParams noParams) {
-    return _authenticationRepository.checkAuthentication();
+  Future<Either<Failure, AppUser>> call(NoRequestParams noParams) async {
+    final result = await _authenticationRepository.checkAuthentication();
+    return result;
   }
 }

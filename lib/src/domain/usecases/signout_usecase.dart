@@ -10,7 +10,8 @@ class SignOutUseCase implements UseCase<bool, NoRequestParams> {
   final IAuthenticationRepository _authenticationRepository;
 
   @override
-  Future<Either<Failure, bool>> call(NoRequestParams noParams) {
-    return _authenticationRepository.signOut();
+  Future<Either<Failure, bool>> call(NoRequestParams noParams) async {
+    final result = await _authenticationRepository.signOut();
+    return result;
   }
 }
