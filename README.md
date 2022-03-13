@@ -10,9 +10,10 @@ Este projeto consiste em criar um App que realize login e logout por meio da pla
 # Tecnologias Utilizadas
 - [flutter](https://flutter.dev/ "flutter")
 - [dart](https://dart.dev/ "dart")
-- [bloc]
-- [firebase]
-- [get_it]
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc "flutter_bloc")
+- [firebase_auth](https://pub.dev/packages/firebase_auth "firebase_auth")
+- [firebase_core](https://pub.dev/packages/firebase_core "firebase_core")
+- [get_it](https://pub.dev/packages/get_it "get_it")
 
 # Funcionalidades
 - Login por meio da plataforma Google Firebase.
